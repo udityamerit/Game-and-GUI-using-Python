@@ -68,19 +68,19 @@ set_background(root, 'OIG2.jpeg')
 
   
 city_label = tk.Label(root, text="Enter Name Of City OR Country:",font=("Robotomono",25,"bold"),foreground="blue",bg="#D2F7F4")
-city_label.pack()
+city_label.pack(pady=10)
 
 
 city_entry = tk.Entry(font=("Robotomono", 25), fg="blue", bg="#D2F7F4") 
-city_entry.pack()
+city_entry.pack(pady=10)
 
 
 
 weather_button = tk.Button(root,font=("Robotomono",15), text=" ⛅ Get Weather", command=show_weather)
-weather_button.pack()
+weather_button.pack(pady=10)
 
 weather_label = tk.Label(root, font=("Robotomono", 30),bg=None)
-weather_label.pack()
+weather_label.pack(pady=10)
 
 def Close():
     root.destroy()
