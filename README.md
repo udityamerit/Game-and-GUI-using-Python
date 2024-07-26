@@ -1,5 +1,3 @@
-Sure! Below is an example of a README file for your weather application using a GUI in Python:
-
 ```markdown
 # Weather Application
 
