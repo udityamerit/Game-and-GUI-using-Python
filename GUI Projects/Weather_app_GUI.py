@@ -1,7 +1,7 @@
-
 import tkinter as tk
 from tkinter import messagebox
 from PIL import ImageTk, Image 
+from datetime import datetime
 import requests
 
 def get_weather(city):
@@ -13,14 +13,31 @@ def get_weather(city):
     if response.status_code == 200:
         data = response.json()
         main = data['main']
+        wind = data['wind']
+        sys = data['sys']
+        clouds = data['clouds']
+        
         temperature = main['temp']
         humidity = main['humidity']
         pressure = main['pressure']
         weather_desc = data['weather'][0]['description']
+        wind_speed = wind['speed']
+        sunrise = datetime.fromtimestamp(sys['sunrise']).strftime('%H:%M:%S')
+        sunset = datetime.fromtimestamp(sys['sunset']).strftime('%H:%M:%S')
+        cloudiness = clouds['all']
         
-        weather_info = f"🌡Temperature: {temperature}°C\n\n 💧 Humidity: {humidity}%\n\n 🕣 Pressure: {pressure} hPa\n\n Description: {weather_desc.capitalize()}"
+        weather_info = (
+            f"🌡 Temperature: {temperature}°C\n"
+            f"💧 Humidity: {humidity}%\n"
+            f"🕣 Pressure: {pressure} hPa\n"
+            f"🌬 Wind Speed: {wind_speed} m/s\n"
+            f"🌅 Sunrise: {sunrise}\n"
+            f"🌇 Sunset: {sunset}\n"
+            f"☁ Cloudiness: {cloudiness}%\n"
+            f"🌤 Description: {weather_desc.capitalize()}"
+        )
     else:
-        weather_info = "City not found"
+        weather_info = "City or Country not found"
     
     return weather_info
 
@@ -45,12 +62,12 @@ def set_background(root, image_path):
 # Set up the GUI
 
 root = tk.Tk()
-root.title("Weather App")
-root.geometry("720x720")
+root.title("Weather Forcasting Dashboard")
+root.geometry("820x720")
 set_background(root, 'OIG2.jpeg')  
 
   
-city_label = tk.Label(root, text="Enter City:",font=("Robotomono",25,"bold"),foreground="blue",bg="#D2F7F4")
+city_label = tk.Label(root, text="Enter Name Of City OR Country:",font=("Robotomono",25,"bold"),foreground="blue",bg="#D2F7F4")
 city_label.pack()
 
 
