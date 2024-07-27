@@ -64,6 +64,7 @@ def set_background(root, image_path):
 root = tk.Tk()
 root.title("Weather Forcasting Dashboard")
 root.geometry("820x720")
+
 set_background(root, 'OIG2.jpeg')  
 
   
@@ -76,7 +77,7 @@ city_entry.pack(pady=10)
 
 
 
-weather_button = tk.Button(root,font=("Robotomono",15), text=" ⛅ Get Weather", command=show_weather)
+weather_button = tk.Button(root,font=("Robotomono",15), text=" ⛅ Get Weather", command=show_weather,fg="green",relief="sunken",borderwidth=10)
 weather_button.pack(pady=10)
 
 weather_label = tk.Label(root, font=("Robotomono", 30),bg=None)
@@ -85,7 +86,7 @@ weather_label.pack(pady=10)
 def Close():
     root.destroy()
     
-exit_button = tk.Button(root,font=("Robotomono",19), text="Exit", command=Close) 
+exit_button = tk.Button(root,font=("Robotomono",19), text="Exit",fg="red",borderwidth=6,relief="sunken", command=Close) 
 
 exit_button.pack()
 root.mainloop()
