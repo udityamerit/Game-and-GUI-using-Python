@@ -1,5 +1,5 @@
-```markdown
-## Introduction
+
+# Introduction
 
 Welcome to the Weather Application! This application is designed to provide you with the latest weather updates for any city in the world. Using the OpenWeatherMap API, this app fetches real-time weather data and displays it in a user-friendly graphical interface. Whether you're planning your day or just curious about the weather conditions elsewhere, this app has you covered.
 
@@ -7,20 +7,20 @@ With features such as temperature, humidity, pressure, wind speed, sunrise and s
 
 Get started now and never be caught off guard by the weather again!
 
-## Features
+# Features
 
 - Fetches current weather information for any city.
 - Displays temperature, humidity, pressure, wind speed, sunrise and sunset times, cloudiness, and weather description.
 - User-friendly GUI with input validation.
 
-## Requirements
+# Requirements
 
 - Python 3.x
 - Tkinter (usually comes pre-installed with Python)
 - Requests
 - Pillow (PIL Fork)
 
-## Installation
+# Installation
 
 1. Clone the repository:
     ```bash
@@ -38,7 +38,7 @@ Get started now and never be caught off guard by the weather again!
     sudo apt-get install python3-tk
     ```
 
-## Usage
+# Usage
 
 1. Replace the `api_key` variable in the `get_weather` function with your OpenWeatherMap API key. You can get a free API key by signing up on the [OpenWeatherMap website](https://openweathermap.org/).
 
@@ -49,9 +49,8 @@ Get started now and never be caught off guard by the weather again!
 
 3. Enter the name of the city in the input field and click on the "Get Weather" button to fetch the weather information.
 
-## Code Overview
 
-### `weather_app.py`
+# `weather_app.py`
 
 This is the main script that contains the following functions:
 
@@ -61,21 +60,21 @@ This is the main script that contains the following functions:
 
 
 
-## License
+# License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Contributing
+# Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Acknowledgments
+# Acknowledgments
 
 - [OpenWeatherMap](https://openweathermap.org/) for providing the weather API.
 - [Python](https://www.python.org/) for being an awesome programming language.
 - [Tkinter](https://docs.python.org/3/library/tkinter.html) for the GUI library.
 
-```
+
 
 
 # Sample of GUI Window: 
