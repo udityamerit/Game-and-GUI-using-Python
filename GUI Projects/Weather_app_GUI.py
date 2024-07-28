@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import tkinter.messagebox as tkmb
 from PIL import ImageTk, Image 
 from datetime import datetime
 import requests
@@ -47,7 +48,9 @@ def show_weather():
         weather_info = get_weather(city)
         weather_label.config(text=weather_info)
     else:
-        messagebox.showwarning("Input Error", "Please enter a city name")
+        # messagebox.showwarning("Input Error", "Please enter a city name")
+
+        tkmb.showinfo(title='Input Error', message='Error! City or Country not found', icon='error')
 
 def set_background(root, image_path):
 
@@ -55,7 +58,7 @@ def set_background(root, image_path):
     
     bg_image = ImageTk.PhotoImage(image)
 
-    bg_label = tk.Label(root, image=bg_image)
+    bg_label = tk.Label(root, image=bg_image,borderwidth=12,relief="sunken")
     bg_label.place(x=0, y=0, relwidth=1, relheight=1)
     bg_label.image = bg_image 
 
@@ -64,12 +67,18 @@ def set_background(root, image_path):
 root = tk.Tk()
 root.title("Weather Forcasting Dashboard")
 root.geometry("820x720")
+root.minsize(820,720)
+root.maxsize(820,720)
+
+img = tk.PhotoImage(file='white.png')
+root.iconphoto(False, img)
 
 set_background(root, 'OIG2.jpeg')  
 
   
-city_label = tk.Label(root, text="Enter Name Of City OR Country:",font=("Robotomono",25,"bold"),foreground="blue",bg="#D2F7F4")
-city_label.pack(pady=10)
+city_label = tk.Label(root, text="Enter Name Of City/Country",font=("Robotomono",25,"bold"),foreground="blue",bg="#D2F7F4")
+
+city_label.pack(pady=19)
 
 
 city_entry = tk.Entry(font=("Robotomono", 25), fg="blue", bg="#D2F7F4") 
