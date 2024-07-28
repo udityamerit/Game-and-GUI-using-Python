@@ -77,6 +77,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```
 
-Save this content into a `README.md` file in your project's root directory. This file provides a comprehensive overview of your weather application, including installation instructions, usage, and a code overview.
 
-Sample of GUI Window: ![image](https://github.com/user-attachments/assets/1f5a52b8-ae37-4258-be6e-5d8922bf724f)
+# Sample of GUI Window: 
+![image](https://github.com/user-attachments/assets/1f5a52b8-ae37-4258-be6e-5d8922bf724f)
