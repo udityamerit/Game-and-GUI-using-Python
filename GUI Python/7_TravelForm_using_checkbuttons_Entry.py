@@ -14,15 +14,18 @@ def getvalue():
 
         print(f" Name: {namevalue.get()}\n Phone Number:  {Phonevalue.get()}\n Gender: {gendervalue.get()}\n Emergency Contact Number: {emergencyvalue.get()}\n Payment method: {paymentvalue.get()}\n\n")
 
+        # creating a file to store the records
         with open('7.1_record.text','a') as f:
                 f.write(f" Name: {namevalue.get()}\n Phone Number:  {Phonevalue.get()}\n Gender: {gendervalue.get()}\n Emergency Contact Number: {emergencyvalue.get()}\n Payment method: {paymentvalue.get()}\n\n")
 
+# settin the title of the window
+root.title("Basic form prototype")
 
-root.title("My first form")
-
+# setting the icon for the window
 icon = PhotoImage(file="books.png")
 root.iconphoto(True,icon)
 
+# setting the Size of the window
 root.geometry("700x400")
 
 # heading creating
