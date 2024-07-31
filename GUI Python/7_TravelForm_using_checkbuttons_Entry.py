@@ -4,11 +4,9 @@ from PIL import ImageTk, Image
       
 root  = Tk()
 
-# img= PhotoImage(file='image.png', master= root)
-# img_label= Label(root,image=img)
-# img_label.place(x=0, y=0)
- 
 root.configure(background='lightblue')
+
+# Difine the function for getting the form details and store the details in file
 def getvalue():
         print("Form submission succesful")
 
