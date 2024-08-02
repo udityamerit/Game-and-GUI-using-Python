@@ -79,35 +79,20 @@ def back_to_root():
 
 def plot():
     ax.clear()
-    x = np.random.randint(0,10,10)
-    y = np.random.randint(0,10,10)
-    ax.scatter(x,y)
+    # x = np.random.randint(0,10,10)
+    # y = np.random.randint(0,10,10)
+    
+
+    nRowsRead = 1000 # specify 'None' if want to read whole file
+    df1 = pd.read_csv('weather.csv')
+    s = df1['Station.Location'].head(10)
+    x = df1['Data.Temperature.Max Temp'].head(10)
+    y = df1['Data.Temperature.Min Temp'].head(10)
+    plt.pie(x,labels=s,autopct='%0.1f%%')
+
+    # plt.pie(y,labels=s,autopct='%0.1f%%')
+    # plt.colorbar()
     canvas.draw()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Destroy the main window
 def Close():
@@ -149,7 +134,8 @@ switch_button.pack()
 fig, ax = plt.subplots()
 
 
-# creating a frame of application
+# creating a frame of application to plot the graphs
+
 frame = tk.Frame(second_window)
 label =tk.Label(master=second_window,text="Graphs")
 label.config(font=("Courier",32),relief="raised",borderwidth=5,fg="purple",background='orange')
