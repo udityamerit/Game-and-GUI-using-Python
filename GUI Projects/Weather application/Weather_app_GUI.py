@@ -4,10 +4,16 @@ import tkinter.messagebox as tkmb
 from PIL import ImageTk, Image 
 from datetime import datetime
 import requests
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import json
+import numpy as np
 
+# making the api key:
+api_key = "3f4f458fc6d5cb3440d24074d29f7e82"
 def get_weather(city):
-    api_key = "3f4f458fc6d5cb3440d24074d29f7e82" 
-
+     
     base_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
 
     response = requests.get(base_url)
@@ -62,41 +68,122 @@ def set_background(root, image_path):
     bg_label.place(x=0, y=0, relwidth=1, relheight=1)
     bg_label.image = bg_image 
 
+
+def open_second_window():
+    root.withdraw()  # Hide the main window
+    second_window.deiconify()  # Show the second window
+
+def back_to_root():
+    second_window.withdraw()  # Hide the second window
+    root.deiconify()  # Show the main window
+
+def plot():
+    ax.clear()
+    x = np.random.randint(0,10,10)
+    y = np.random.randint(0,10,10)
+    ax.scatter(x,y)
+    canvas.draw()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Destroy the main window
+def Close():
+    root.destroy()
+
+# def Close1():
+#     second_window.destroy()
+    
+
+
 # Set up the GUI
-
 root = tk.Tk()
-root.title("Weather Forcasting Dashboard")
-root.geometry("820x720")
-root.minsize(820,720)
-root.maxsize(820,720)
 
+
+#  For main window
+root.title("Weather Forcasting Dashboard")
+root.geometry("820x820")
+root.minsize(920,820)
+root.maxsize(1020,1020)
 img = tk.PhotoImage(file='white.png')
 root.iconphoto(False, img)
-
 set_background(root, 'OIG2.jpeg')  
 
-  
+#  For second window
+second_window = tk.Toplevel(root)
+second_window.title("Weather Forcasting Dashboard")
+second_window.geometry("820x820")
+second_window.minsize(920,820)
+second_window.maxsize(1020,1020)
+img = tk.PhotoImage(file='white.png')
+second_window.iconphoto(False, img)
+set_background(second_window, 'OIG2.jpeg')
+second_window.withdraw() 
+
+
+switch_button = tk.Button(root,font=("Courier",12), text=" Next Window", command=open_second_window,fg="purple",relief="groove",bg="#ff9633",borderwidth=5,pady=3)
+switch_button.pack()
+
+fig, ax = plt.subplots()
+
+
+# creating a frame of application
+frame = tk.Frame(second_window)
+label =tk.Label(master=second_window,text="Graphs")
+label.config(font=("Courier",32),relief="raised",borderwidth=5,fg="purple",background='orange')
+label.pack()
+canvas = FigureCanvasTkAgg(fig, master=second_window)
+canvas.get_tk_widget().pack()
+frame.pack()
+
+tk.Button(frame, text="Plot Graph",fg="purple",relief="groove",borderwidth=5, command=plot).pack()
+
+
+# Button to switch back to the main window
+back_button = tk.Button(second_window, text="Back to Main Window",font=("Courier",12), command=back_to_root,fg="purple",relief="groove",borderwidth=5,pady=3)
+back_button.pack()
+
 city_label = tk.Label(root, text="Enter Name Of City/Country",font=("Robotomono",25,"bold"),foreground="green",bg="#D2F7F4")
-
 city_label.pack(pady=19)
-
 
 city_entry = tk.Entry(font=("Robotomono", 25), fg="blue", bg="#D2F7F4") 
 city_entry.pack(pady=10)
 
-
-
 weather_button = tk.Button(root,font=("Robotomono",19), text=" ⛅ Get Weather", command=show_weather,fg="green",relief="sunken",borderwidth=10)
-
 weather_button.pack(pady=10)
 
 weather_label = tk.Label(root, font=("Robotomono", 30),bg=None)
 weather_label.pack(pady=10)
 
-def Close():
-    root.destroy()
-    
-exit_button = tk.Button(root,font=("Robotomono",19), text="Exit",fg="red",borderwidth=9,relief="sunken", command=Close) 
+# exit buttons
+exit_button = tk.Button(root,font=("Robotomono",19), text="Exit",fg="red",borderwidth=9,relief="groove", command=Close) 
+
+# exit_button1 = tk.Button(second_window,font=("Robotomono",19), text="Exit",fg="red",borderwidth=9,relief="sunken", command=Close1) 
 
 exit_button.pack()
+
+# exit_button1.pack()
+
 root.mainloop()
