@@ -1,3 +1,5 @@
+# Importing all the required modules for the application
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -13,6 +15,7 @@ import numpy as np
 # making the api key:
 api_key = "3f4f458fc6d5cb3440d24074d29f7e82"
 
+# getting the data for weather forecasting using the api key
 def get_weather(city):
     base_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
     response = requests.get(base_url)
@@ -47,6 +50,8 @@ def get_weather(city):
     
     return weather_info
 
+# creating the function for showing the weather data
+
 def show_weather():
     city = city_entry.get()
     if city:
@@ -56,6 +61,7 @@ def show_weather():
         messagebox.showwarning("Input Error", "Please enter a city name")
         tkmb.showinfo(title='Input Error', message='Error! City or Country not found', icon='error')
 
+# creating the function for setting the background of the window
 def set_background(root, image_path):
     image = Image.open(image_path)
     bg_image = ImageTk.PhotoImage(image)
@@ -71,6 +77,7 @@ def back_to_root():
     second_window.withdraw()  # Hide the second window
     root.deiconify()  # Show the main window
 
+# plotting the all kind of graps
 def plot():
     ax.clear()
 
@@ -146,18 +153,18 @@ second_window.iconphoto(False, img)
 set_background(second_window, 'OIG2.jpeg')
 second_window.withdraw() 
 
+# Button for move to second window
 switch_button = tk.Button(root, font=("Courier",15), text="Next Window", command=open_second_window, fg="purple", relief="groove", bg="#ff9633", borderwidth=5, pady=3)
 switch_button.pack()
 
-fig, ax = plt.subplots()
+# Setting the size for plotting the different types of graphs
+fig, ax = plt.subplots(figsize = (7,4))
 
 # Creating a frame of application to plot the graphs
 frame = tk.Frame(second_window)
-
 label = tk.Label(master=second_window, text="Graphical Representation of Different Plots")
 label.config(font=("Courier",18), relief="raised", borderwidth=3, fg="purple", background='lightgreen', pady=8)
 label.pack()
-
 canvas = FigureCanvasTkAgg(fig, master=second_window)
 canvas.get_tk_widget().pack()
 frame.pack()
@@ -168,21 +175,22 @@ plot_type_var.set("Bar Plot")
 plot_type_menu = ttk.Combobox(frame, textvariable=plot_type_var, values=["Bar Plot", "Pie Plot", "Line Plot", "Scatter Plot", "Hex Plot", "Hist Plot"])
 plot_type_menu.pack(pady=15)
 
+# Creating the Button to get the graph
 tk.Button(frame, text="Plot Graph", fg="purple", relief="groove", borderwidth=5, command=plot, font=("Courier",25)).pack()
 
 # Button to switch back to the main window
 back_button = tk.Button(second_window, text="Back to Main Window", font=("Courier",25), command=back_to_root, fg="purple", relief="groove", borderwidth=5, pady=3)
 back_button.pack()
 
+# Creating the heading and entry for the city or country
 city_label = tk.Label(root, text="Enter Name Of City/Country", font=("Robotomono",25,"bold"), foreground="green", bg="#D2F7F4")
 city_label.pack(pady=19)
-
 city_entry = tk.Entry(font=("Robotomono", 25), fg="blue", bg="#D2F7F4") 
 city_entry.pack(pady=10)
 
+# Creating the button for getting the weather details
 weather_button = tk.Button(root, font=("Robotomono",19), text="⛅ Get Weather", command=show_weather, fg="green", relief="sunken", borderwidth=10)
 weather_button.pack(pady=10)
-
 weather_label = tk.Label(root, font=("Robotomono", 30), bg="lightblue")
 weather_label.pack(pady=10)
 
