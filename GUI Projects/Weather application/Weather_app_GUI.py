@@ -82,8 +82,9 @@ def plot():
 
     if plot_type == "Bar Plot":
         x = np.arange(len(s))
-        ax.bar(x, max_temp, label='Max Temp', color='green')
-        ax.bar(x, min_temp, label='Min Temp', color='red', bottom=max_temp)
+        width = 0.4  # width of the bars
+        ax.bar(x - width/2, max_temp, width, label='Max Temp', color='green')
+        ax.bar(x + width/2, min_temp, width, label='Min Temp', color='red')
         ax.set_ylabel("Temperature")
         ax.set_xlabel("Location")
         ax.set_xticks(x)
@@ -99,6 +100,21 @@ def plot():
         ax.set_xlabel("Location")
         ax.set_xticks(x)
         ax.set_xticklabels(s, rotation=-75)
+        ax.legend(loc='best')
+    elif plot_type == "Scatter Plot":
+        ax.scatter(max_temp, min_temp, marker="*", color='blue')
+        ax.set_xlabel("Max Temp")
+        ax.set_ylabel("Min Temp")
+        ax.legend(loc='best')
+    elif plot_type == "Hex Plot":
+        ax.hexbin(max_temp, min_temp, gridsize=25, cmap='Blues')
+        ax.set_xlabel("Max Temp")
+        ax.set_ylabel("Min Temp")
+        ax.legend(loc='best')
+    elif plot_type == "Hist Plot":
+        ax.hist([max_temp, min_temp], bins=15, color=['green', 'red'], label=['Max Temp', 'Min Temp'])
+        ax.set_xlabel("Temperature")
+        ax.set_ylabel("Frequency")
         ax.legend(loc='best')
 
     canvas.draw()
@@ -130,7 +146,7 @@ second_window.iconphoto(False, img)
 set_background(second_window, 'OIG2.jpeg')
 second_window.withdraw() 
 
-switch_button = tk.Button(root, font=("Courier",12), text="Next Window", command=open_second_window, fg="purple", relief="groove", bg="#ff9633", borderwidth=5, pady=3)
+switch_button = tk.Button(root, font=("Courier",15), text="Next Window", command=open_second_window, fg="purple", relief="groove", bg="#ff9633", borderwidth=5, pady=3)
 switch_button.pack()
 
 fig, ax = plt.subplots()
@@ -138,8 +154,8 @@ fig, ax = plt.subplots()
 # Creating a frame of application to plot the graphs
 frame = tk.Frame(second_window)
 
-label = tk.Label(master=second_window, text="Graphical Representation")
-label.config(font=("Courier",15), relief="raised", borderwidth=3, fg="purple", background='orange', pady=4)
+label = tk.Label(master=second_window, text="Graphical Representation of Different Plots")
+label.config(font=("Courier",18), relief="raised", borderwidth=3, fg="purple", background='lightgreen', pady=8)
 label.pack()
 
 canvas = FigureCanvasTkAgg(fig, master=second_window)
@@ -149,13 +165,13 @@ frame.pack()
 # Dropdown menu for plot type selection
 plot_type_var = tk.StringVar()
 plot_type_var.set("Bar Plot")
-plot_type_menu = ttk.Combobox(frame, textvariable=plot_type_var, values=["Bar Plot", "Pie Plot", "Line Plot"])
-plot_type_menu.pack(pady=10)
+plot_type_menu = ttk.Combobox(frame, textvariable=plot_type_var, values=["Bar Plot", "Pie Plot", "Line Plot", "Scatter Plot", "Hex Plot", "Hist Plot"])
+plot_type_menu.pack(pady=15)
 
-tk.Button(frame, text="Plot Graph", fg="purple", relief="groove", borderwidth=5, command=plot, font=("Courier",15)).pack()
+tk.Button(frame, text="Plot Graph", fg="purple", relief="groove", borderwidth=5, command=plot, font=("Courier",25)).pack()
 
 # Button to switch back to the main window
-back_button = tk.Button(second_window, text="Back to Main Window", font=("Courier",15), command=back_to_root, fg="purple", relief="groove", borderwidth=5, pady=3)
+back_button = tk.Button(second_window, text="Back to Main Window", font=("Courier",25), command=back_to_root, fg="purple", relief="groove", borderwidth=5, pady=3)
 back_button.pack()
 
 city_label = tk.Label(root, text="Enter Name Of City/Country", font=("Robotomono",25,"bold"), foreground="green", bg="#D2F7F4")
@@ -167,7 +183,7 @@ city_entry.pack(pady=10)
 weather_button = tk.Button(root, font=("Robotomono",19), text="⛅ Get Weather", command=show_weather, fg="green", relief="sunken", borderwidth=10)
 weather_button.pack(pady=10)
 
-weather_label = tk.Label(root, font=("Robotomono", 30), bg=None)
+weather_label = tk.Label(root, font=("Robotomono", 30), bg="lightblue")
 weather_label.pack(pady=10)
 
 # Exit button
