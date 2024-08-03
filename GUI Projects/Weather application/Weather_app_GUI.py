@@ -54,7 +54,7 @@ def show_weather():
         weather_info = get_weather(city)
         weather_label.config(text=weather_info)
     else:
-        # messagebox.showwarning("Input Error", "Please enter a city name")
+        messagebox.showwarning("Input Error", "Please enter a city name")
 
         tkmb.showinfo(title='Input Error', message='Error! City or Country not found', icon='error')
 
@@ -85,11 +85,17 @@ def plot():
 
     nRowsRead = 1000 # specify 'None' if want to read whole file
     df1 = pd.read_csv('weather.csv')
-    s = df1['Station.Location'].head(10)
-    x = df1['Data.Temperature.Max Temp'].head(10)
-    y = df1['Data.Temperature.Min Temp'].head(10)
-    plt.pie(x,labels=s,autopct='%0.1f%%')
-
+    s = df1['Station.Location'].head(15)
+    x = df1['Data.Temperature.Max Temp'].head(15)
+    y = df1['Data.Temperature.Min Temp'].head(15)
+    # plt.pie(x,labels=s,autopct='%0.1f%%')
+    plt.figlegend("MaxTemp","MinTemp")
+    plt.plot(s,x, marker= "o", color='green')
+    plt.plot(s,y, marker= "o", color='red')
+    plt.ylabel("Temperature",)
+    plt.xlabel("Location")
+    plt.xticks(rotation = -75)
+    plt.legend(loc = 'best')
     # plt.pie(y,labels=s,autopct='%0.1f%%')
     # plt.colorbar()
     canvas.draw()
@@ -111,7 +117,7 @@ root = tk.Tk()
 root.title("Weather Forcasting Dashboard")
 root.geometry("820x820")
 root.minsize(920,820)
-root.maxsize(1020,1020)
+root.maxsize(1100,1100)
 img = tk.PhotoImage(file='white.png')
 root.iconphoto(False, img)
 set_background(root, 'OIG2.jpeg')  
@@ -121,7 +127,7 @@ second_window = tk.Toplevel(root)
 second_window.title("Weather Forcasting Dashboard")
 second_window.geometry("820x820")
 second_window.minsize(920,820)
-second_window.maxsize(1020,1020)
+second_window.maxsize(1120,1120)
 img = tk.PhotoImage(file='white.png')
 second_window.iconphoto(False, img)
 set_background(second_window, 'OIG2.jpeg')
@@ -137,18 +143,20 @@ fig, ax = plt.subplots()
 # creating a frame of application to plot the graphs
 
 frame = tk.Frame(second_window)
-label =tk.Label(master=second_window,text="Graphs")
-label.config(font=("Courier",32),relief="raised",borderwidth=5,fg="purple",background='orange')
+
+label =tk.Label(master=second_window,text="Graphical Representation")
+label.config(font=("Courier",15),relief="raised",borderwidth=3,fg="purple",background='orange',pady=4)
 label.pack()
+
 canvas = FigureCanvasTkAgg(fig, master=second_window)
 canvas.get_tk_widget().pack()
 frame.pack()
 
-tk.Button(frame, text="Plot Graph",fg="purple",relief="groove",borderwidth=5, command=plot).pack()
+tk.Button(frame, text="Plot Graph",fg="purple",relief="groove",borderwidth=5, command=plot, font=("Courier",15)).pack()
 
 
 # Button to switch back to the main window
-back_button = tk.Button(second_window, text="Back to Main Window",font=("Courier",12), command=back_to_root,fg="purple",relief="groove",borderwidth=5,pady=3)
+back_button = tk.Button(second_window, text="Back to Main Window",font=("Courier",15), command=back_to_root,fg="purple",relief="groove",borderwidth=5,pady=3)
 back_button.pack()
 
 city_label = tk.Label(root, text="Enter Name Of City/Country",font=("Robotomono",25,"bold"),foreground="green",bg="#D2F7F4")
@@ -173,3 +181,5 @@ exit_button.pack()
 # exit_button1.pack()
 
 root.mainloop()
+
+'''supported values are 'best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'''
