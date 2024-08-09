@@ -79,4 +79,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 # Sample of GUI Window: 
 ![image](https://github.com/user-attachments/assets/e437da37-db91-494a-ad10-daee93f3acc1)
+![1](https://github.com/user-attachments/assets/71928b55-16c0-4e89-9067-8b092d4cb800)
+![3](https://github.com/user-attachments/assets/0902fb42-c694-411b-8ab0-a533d69e6a17)
+![4](https://github.com/user-attachments/assets/5ee89265-25df-4f28-956d-eba2e5b5ace4)
+![6](https://github.com/user-attachments/assets/38d9b57e-38a1-4a14-9f6d-2a05deb857e9)
+
+
+
 
