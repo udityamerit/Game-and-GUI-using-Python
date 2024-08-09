@@ -13,7 +13,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 
 # making the api key:
-api_key = "api_key"
+api_key = "your api key"
 
 # getting the data for weather forecasting using the api key
 def get_weather(city):
