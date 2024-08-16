@@ -11,7 +11,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 
 # making the api key:
-api_key = "3f4f458fc6d5cb3440d24074d29f7e82"
+api_key = "Your api key"
+
 def get_weather(city):
      
     base_url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
