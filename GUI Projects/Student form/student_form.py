@@ -47,7 +47,7 @@ RegestrationNo.grid(row=6, column = 2)
 
 # creating variables to take the inputs and checkboxes
 namevalue = StringVar()  # this is use for the taking input
-Phonevalue = StringVar()
+Phonevalue = StringVar()   # this is used for to take the String input
 emailvalue = StringVar()
 gendervalue = StringVar()
 BranchNamevalue = StringVar()
